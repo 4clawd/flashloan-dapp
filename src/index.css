@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --text-primary: #f8f3e8;
+  --text-secondary: rgba(248, 243, 232, 0.76);
+  --text-dim: rgba(248, 243, 232, 0.48);
+  --gold: #f3bc32;
+  --gold-soft: #ffd972;
+  --red: #b72231;
+  --mono: 'IBM Plex Mono', monospace;
+  --display: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at top, rgba(174, 29, 42, 0.2), transparent 22%),
+    radial-gradient(circle at 80% 0%, rgba(243, 188, 50, 0.08), transparent 18%),
+    linear-gradient(180deg, #090909 0%, #050505 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+}
+
+code,
+input,
+.rk-connect-button button,
+.walletconnect-modal__base {
+  font-family: var(--mono);
+}
+
+.rk-connect-button button {
+  min-height: 38px;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+}
