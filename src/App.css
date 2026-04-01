@@ -82,6 +82,7 @@
 .top-shell,
 .hero-shell,
 .content-shell,
+.proof-shell,
 .recent-shell,
 .approve-shell,
 .footer-shell {
@@ -95,6 +96,7 @@
 .guide-shell,
 .recent-shell,
 .approve-shell,
+.proof-shell,
 .footer-shell {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
@@ -294,6 +296,7 @@
 .guide-shell,
 .recent-shell,
 .approve-shell,
+.proof-shell,
 .footer-shell {
   display: grid;
   gap: 14px;
@@ -305,6 +308,7 @@
 .guide-head h2,
 .recent-head h2,
 .approve-head h2,
+.proof-head h2,
 .footer-brand h2 {
   margin: 4px 0 0;
   font-family: var(--display);
@@ -378,6 +382,70 @@
 .guide-item p,
 .footer-brand p {
   margin: 6px 0 0;
+}
+
+.proof-shell {
+  margin-top: 4px;
+}
+
+.proof-head p:last-child {
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+}
+
+.proof-link {
+  width: fit-content;
+  min-height: 40px;
+  margin-top: 12px;
+  border-radius: 999px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.proof-link:hover {
+  transform: translateY(-1px);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.proof-item {
+  display: grid;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-item span {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.proof-item code,
+.proof-item a {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  text-decoration: none;
+  word-break: break-word;
 }
 
 .terminal-snippet {
@@ -564,6 +632,7 @@
   .hero-shell,
   .content-shell,
   .secondary-shell,
+  .proof-shell,
   .footer-shell {
     grid-column: 1 / -1;
   }
@@ -581,7 +650,8 @@
 
   .hero-shell,
   .content-shell,
-  .secondary-shell {
+  .secondary-shell,
+  .proof-shell {
     grid-template-columns: 1fr;
   }
 
@@ -597,11 +667,13 @@
   .guide-shell,
   .recent-shell,
   .approve-shell,
+  .proof-shell,
   .footer-shell {
     padding: 20px;
   }
 
   .approve-ledger,
+  .proof-grid,
   .footer-columns {
     grid-template-columns: 1fr;
   }

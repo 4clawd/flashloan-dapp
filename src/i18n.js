@@ -186,6 +186,18 @@ export const translations = {
         },
       ],
     },
+    proof: {
+      label: 'Verified Sample',
+      title: 'Mainnet round-trip proof',
+      description:
+        'A real BSC transaction already borrowed 0.5 BUSD through the live proxy and returned it in the same transaction. This sample is shown as direct proof that the protocol is operating normally on mainnet.',
+      txHash: 'Transaction',
+      amount: 'Borrow amount',
+      gasUsed: 'Gas used',
+      executor: 'Executor',
+      lender: 'Lender',
+      borrower: 'Borrower',
+    },
     footer: {
       rights: '4Claw is building the benchmark AgentFi flashloan rail on BNB Smart Chain.',
       website: 'Website',
@@ -371,6 +383,19 @@ export const translations = {
           a: '无限授权操作上更方便，但风险暴露更大。精确授权更严格，也通常更安全。',
         },
       ],
+    },
+    proof: {
+      label: '已验证样例',
+      title: '主网往返交易证明',
+      description:
+        '该样例展示了一笔已经在 BSC 主网上完成的真实交易：通过当前 proxy 借出 0.5 BUSD，并在同一笔交易中原额归还。这直接证明协议已经在主网上正常运行。',
+      txHash: '交易哈希',
+      amount: '借款金额',
+      gasUsed: 'Gas 消耗',
+      executor: '执行者',
+      lender: '出借地址',
+      borrower: '借款合约',
+      viewOnBscscan: '在 BscScan 查看',
     },
     footer: {
       rights: '面向 BNB Smart Chain 的 4Claw 授权界面。',
@@ -562,6 +587,19 @@ export const translations = {
         },
       ],
     },
+    proof: {
+      label: 'Подтвержденный пример',
+      title: 'Доказательство round-trip на mainnet',
+      description:
+        'Этот блок показывает реальную транзакцию в BSC mainnet: через текущий proxy было занято 0.5 BUSD и возвращено в той же транзакции. Это прямое подтверждение того, что протокол уже работает в основной сети.',
+      txHash: 'Транзакция',
+      amount: 'Сумма займа',
+      gasUsed: 'Газ',
+      executor: 'Исполнитель',
+      lender: 'Лендер',
+      borrower: 'Borrower-контракт',
+      viewOnBscscan: 'Открыть в BscScan',
+    },
     footer: {
       rights: 'Интерфейс approve для 4Claw в BNB Smart Chain.',
       website: 'Website',
@@ -573,6 +611,11 @@ export const translations = {
 }
 
 export function getText(locale, path) {
-  const target = translations[locale] || translations.en
-  return path.split('.').reduce((value, segment) => value?.[segment], target)
+  const read = (source) =>
+    path.split('.').reduce((value, segment) => value?.[segment], source)
+
+  const localized = read(translations[locale] || {})
+  if (localized !== undefined) return localized
+
+  return read(translations.en)
 }

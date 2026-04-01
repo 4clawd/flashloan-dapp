@@ -20,6 +20,7 @@ import {
   APP_NAME,
   CONTRACTS,
   EXTERNAL_LINKS,
+  SAMPLE_TRANSACTION,
   USING_FALLBACK_PROJECT_ID,
 } from './config'
 import { getText, languages } from './i18n'
@@ -96,7 +97,7 @@ function App() {
     address: CONTRACTS.token.address,
     abi: erc20Abi,
     functionName: 'allowance',
-    args: address ? [address, CONTRACTS.flashloanProxy] : undefined,
+    args: address ? [address, CONTRACTS.spenderAddress] : undefined,
     query: { enabled: Boolean(address) },
   })
 
@@ -213,7 +214,7 @@ function App() {
       address: CONTRACTS.token.address,
       abi: erc20Abi,
       functionName: 'approve',
-      args: [CONTRACTS.flashloanProxy, maxUint256],
+      args: [CONTRACTS.spenderAddress, maxUint256],
     })
   }
 
@@ -318,7 +319,7 @@ function App() {
 
             <div className="approve-command">
               <span>agent@node:~$</span>
-              <code>approve --token BUSD --spender {shortenAddress(CONTRACTS.flashloanProxy)} --amount max</code>
+              <code>approve --token BUSD --spender {shortenAddress(CONTRACTS.spenderAddress)} --amount max</code>
             </div>
 
             <div className="approve-summary">
@@ -329,7 +330,7 @@ function App() {
             <div className="approve-ledger">
               <LedgerItem
                 label={t('approval.spender')}
-                value={CONTRACTS.flashloanProxy}
+                value={CONTRACTS.spenderAddress}
               />
               <LedgerItem
                 label={t('approval.walletBalance')}
@@ -434,6 +435,56 @@ function App() {
           </div>
         </section>
 
+        <section className="proof-shell">
+          <div className="proof-head">
+            <p className="mono-label">{t('proof.label')}</p>
+            <h2>{t('proof.title')}</h2>
+            <p>{t('proof.description')}</p>
+            <a
+              className="proof-link"
+              href={`${EXTERNAL_LINKS.bscscan}/tx/${SAMPLE_TRANSACTION.txHash}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaArrowUpRightFromSquare />
+              <span>{t('proof.viewOnBscscan')}</span>
+            </a>
+          </div>
+
+          <div className="proof-grid">
+            <article className="proof-item">
+              <span>{t('proof.txHash')}</span>
+              <a
+                href={`${EXTERNAL_LINKS.bscscan}/tx/${SAMPLE_TRANSACTION.txHash}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {shortenAddress(SAMPLE_TRANSACTION.txHash)}
+              </a>
+            </article>
+            <article className="proof-item">
+              <span>{t('proof.amount')}</span>
+              <code>{SAMPLE_TRANSACTION.amount}</code>
+            </article>
+            <article className="proof-item">
+              <span>{t('proof.gasUsed')}</span>
+              <code>{SAMPLE_TRANSACTION.gasUsed}</code>
+            </article>
+            <article className="proof-item">
+              <span>{t('proof.executor')}</span>
+              <code>{shortenAddress(SAMPLE_TRANSACTION.executor)}</code>
+            </article>
+            <article className="proof-item">
+              <span>{t('proof.lender')}</span>
+              <code>{shortenAddress(SAMPLE_TRANSACTION.lender)}</code>
+            </article>
+            <article className="proof-item">
+              <span>{t('proof.borrower')}</span>
+              <code>{shortenAddress(SAMPLE_TRANSACTION.borrower)}</code>
+            </article>
+          </div>
+        </section>
+
         <footer className="footer-shell" id="contracts">
           <div className="footer-brand">
             <img src="/logo.png" alt="4Claw logo" />
@@ -466,7 +517,7 @@ function App() {
             <FooterGroup
               title={t('layout.contractAddresses')}
               items={[
-                shortenAddress(CONTRACTS.flashloanProxy),
+                shortenAddress(CONTRACTS.spenderAddress),
                 shortenAddress(CONTRACTS.implementation),
                 shortenAddress(CONTRACTS.create2Factory),
               ]}
